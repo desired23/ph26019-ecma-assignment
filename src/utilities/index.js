@@ -107,4 +107,4 @@ router.on("/*", () => {}, {
     },
 });
 
-export { render, useState, useEffect, router };
+export { render, useState, useEffect, router, rerender };
