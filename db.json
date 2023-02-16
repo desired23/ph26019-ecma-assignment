@@ -1,15 +1,12 @@
 {
   "projects": [
     {
-      "id": 1,
-      "title": "ecma",
+      "title": "ecma1",
       "description": "mo ta",
       "createTime": "date",
-      "skills": [
-        "JS",
-        "HTML5"
-      ],
-      "links": "https://thomashighbaugh.github.io/resume/"
+      "skills": "JS,HTML5",
+      "link": "https://thomashighbaugh.github.io/resume/",
+      "id": 1
     },
     {
       "id": 2,
@@ -20,7 +17,7 @@
         "JS2",
         "HTML5"
       ],
-      "links": "https://thomashighbaugh.github.io/resume/"
+      "link": "https://thomashighbaugh.github.io/resume/"
     },
     {
       "id": 3,
@@ -31,7 +28,7 @@
         "JS3",
         "HTML5"
       ],
-      "links": "https://thomashighbaugh.github.io/resume/"
+      "link": "https://thomashighbaugh.github.io/resume/"
     },
     {
       "id": 4,
@@ -42,31 +39,7 @@
         "JS4",
         "HTML5"
       ],
-      "links": "https://thomashighbaugh.github.io/resume/"
-    },
-    {
-      "title": "de",
-      "description": "déd",
-      "createTime": "adad",
-      "skills": "adeas",
-      "link": "deada",
-      "id": 5
-    },
-    {
-      "title": "dáed",
-      "description": "âdaed",
-      "createTime": "adaedaw",
-      "skills": "đaea",
-      "link": "dădada",
-      "id": 6
-    },
-    {
-      "title": "dáeudased",
-      "description": "dấded",
-      "createTime": "đâsed",
-      "skills": "dádesad",
-      "link": "dâds",
-      "id": 7
+      "link": "https://thomashighbaugh.github.io/resume/"
     }
   ]
 }

@@ -1,24 +1,28 @@
 // import { projects } from "../../data";
-import {useEffect ,useState } from "../../utilities";
+import { useEffect, useState } from "../../utilities";
 const AdminProjectsPage = () => {
-    const [data, setData] = useState([])
-    useEffect(() => {
-      fetch("http://localhost:3000/projects")
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/projects")
       .then((response) => response.json())
       .then((data) => setData(data));
-    }, []);
-    useEffect(()=>{
-        const btns = document.querySelectorAll(".btn-remove");
-        console.log(btns);
-        for (let btn of btns) {
-            btn.addEventListener("click", function () {
-                const id = this.dataset.id
-                const newProjects = data.filter((item) => item.id !== +id)
-                setData(newProjects)
-                console.log(data)
-            })
-        }
-    })
+  }, []);
+  useEffect(() => {
+    const btns = document.querySelectorAll(".btn-remove");
+    console.log(btns);
+    for (let btn of btns) {
+      btn.addEventListener("click", function () {
+        const id = this.dataset.id;
+
+        fetch(`http://localhost:3000/projects/${id}`, {
+          method: "Delete",
+        }).then(() => {
+          const newProjects = data.filter((item) => item.id !== +id);
+          setData(newProjects);
+        });
+      });
+    }
+  });
 
   return `
     <div class="">
@@ -35,20 +39,25 @@ const AdminProjectsPage = () => {
   </tr>
 </thead>
 <tbody>
-    ${data.map((project) => `
+    ${data
+      .map(
+        (project) => `
     <tr>
     <td>${project.id}</td>
     <td>${project.title}</td>
     <td>${project.description}</td>
     <td>${project.createTime}</td>
     <td>${project.skills}</td>
-    <td>${project.links}</td>
+    <td>${project.link}</td>
     <td>
       <button class="btn btn-danger btn-remove" data-id = "${project.id}">Remove</button>
-      <!-- <button class="btn btn-danger btn-remove">Remove</button> -->
+      <a href="/admin/projects/${project.id}/edit" class="btn">Edit</a>
+      
     </td>
   </tr>
-    `).join("")}
+    `
+      )
+      .join("")}
   
 </tbody>
 </table>
