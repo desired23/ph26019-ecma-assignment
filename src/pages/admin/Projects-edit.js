@@ -1,9 +1,13 @@
 import { useEffect, useState, router } from "../../utilities";
+import axios from "axios";
+import { editProject, getProject } from "../../api/project";
 const AdminEditProjectPage = ({id}) => {
 const [data, setData] = useState({})
 
   useEffect(()=>{
-    fetch(`http://localhost:3000/projects/${id} `).then((response)=>response.json()).then((data)=>setData(data))
+    // fetch(`http://localhost:3000/projects/${id} `).then((response)=>response.json()).then((data)=>setData(data))
+    // // axios.get(`http://localhost:3000/projects/${id}`).then(({data})=>setData(data))
+    getProject(id).then(({data})=>setData(data))
   },[])
     useEffect(() => {
         const form = document.querySelector("#form-add");
@@ -16,21 +20,28 @@ const [data, setData] = useState({})
         form.addEventListener("submit", function (e) {
           e.preventDefault();
           const newProjects = {
+            id,
             title: title.value,
             description: description.value,
             createTime: createTime.value,
             skills: skills.value,
             link: link.value,
           };
-          fetch(`http://localhost:3000/projects/${id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newProjects),
-          }).then(() => {
+          // fetch(`http://localhost:3000/projects/${id}`, {
+          //   method: "PUT",
+          //   headers: {
+          //     "Content-Type": "application/json",
+          //   },
+          //   body: JSON.stringify(newProjects),
+          // }).then(() => {
+          //   router.navigate("/admin/projects");
+          // });
+          // // axios.put(`http://localhost:3000/projects/${id}`,newProjects).then(()=>{
+          // //   router.navigate("/admin/projects");
+          // // })
+          editProject(newProjects).then(()=>{
             router.navigate("/admin/projects");
-          });
+          })
         });
       });
   return  `

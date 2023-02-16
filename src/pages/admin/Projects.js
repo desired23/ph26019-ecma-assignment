@@ -1,11 +1,15 @@
 // import { projects } from "../../data";
 import { useEffect, useState } from "../../utilities";
+import axios from "axios";
+import { delProject, getProjects } from "../../api/project";
 const AdminProjectsPage = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/projects")
-      .then((response) => response.json())
-      .then((data) => setData(data));
+    // fetch("http://localhost:3000/projects")
+    //   .then((response) => response.json())
+    //   .then((data) => setData(data));
+    // // axios.get("http://localhost:3000/projects").then(({data})=>setData(data))
+    getProjects().then(({data})=>setData(data))
   }, []);
   useEffect(() => {
     const btns = document.querySelectorAll(".btn-remove");
@@ -13,13 +17,26 @@ const AdminProjectsPage = () => {
     for (let btn of btns) {
       btn.addEventListener("click", function () {
         const id = this.dataset.id;
+        const confirm = window.confirm("Ban co muon xoa khong");
+        if (confirm){
+          delProject(id).then(()=>{
+            const newProjects = data.filter((item) => item.id !== +id);
+            setData(newProjects);
+          }).catch((err)=>console.log(err))
+        }
+        // fetch(`http://localhost:3000/projects/${id}`, {
+        //   method: "Delete",
+        // }).then(() => {
+        //   const newProjects = data.filter((item) => item.id !== +id);
+        //   setData(newProjects);
+        // });
 
-        fetch(`http://localhost:3000/projects/${id}`, {
-          method: "Delete",
-        }).then(() => {
-          const newProjects = data.filter((item) => item.id !== +id);
-          setData(newProjects);
-        });
+        // // axios.delete(`http://localhost:3000/projects/${id}`).then(()=>{
+        // //   const newProjects = data.filter((item) => item.id !== +id);
+        // //   setData(newProjects);
+        // // })
+
+
       });
     }
   });
