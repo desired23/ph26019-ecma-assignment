@@ -2,6 +2,8 @@
 import { useEffect, useState } from "../../utilities";
 import axios from "axios";
 import { delProject, getProjects } from "../../api/project";
+import './project.css'
+
 const AdminProjectsPage = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -42,18 +44,19 @@ const AdminProjectsPage = () => {
   });
 
   return `
-    <div class="">
-    <table>
-    <thead>
-  <tr>
-    <td>STT</td>
-    <td>Title</td>
+    <div class="container">
+    <table class="">
+    <thead><tr>
+    <td class="">STT</td>
+    <td class="">Title</td>
     <td>Description</td>
     <td>CreateTime</td>
     <td>Skills</td>
     <td>Links</td>
+    <td>Image</td>
     <td>Actions</td>
-  </tr>
+  </tr></thead>
+  
 </thead>
 <tbody>
     ${data
@@ -66,9 +69,10 @@ const AdminProjectsPage = () => {
     <td>${project.createTime}</td>
     <td>${project.skills}</td>
     <td>${project.link}</td>
-    <td>
-      <button class="btn btn-danger btn-remove" data-id = "${project.id}">Remove</button>
-      <a href="/admin/projects/${project.id}/edit" class="btn">Edit</a>
+    <td>${project.urlimgs?.map((url)=>`<img style="width:100px" src="${url}">`).join("")}</td>
+    <td class="act">
+      <button class="btn btn-danger btn-remove bg-red-400" data-id = "${project.id}">Remove</button>
+      <a href="/admin/projects/${project.id}/edit" class="btn btn-edit">Edit</a>
       
     </td>
   </tr>

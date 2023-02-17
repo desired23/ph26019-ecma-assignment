@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0 auto;
+}
+.container{
+    text-align: center;
+    margin-top: 14px;
+    margin-bottom: 60px;
+}
+.flex {
+    display: block;
+}
+table, tr, td{
+    border: 1px solid black;
+    
+}
+thead td {
+    text-align: center;
+    font-size: x-large;
+    font-weight: 700;
+}
+td{
+    padding: 4px;
+}
+.btn{
+border: 1px solid #ccc;
+padding: 5px;
+border-radius: 10%;
+width: 100px;
+}
+.act{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+}
+table{
+    width: 80%;
+    margin: 0 auto;
+}
+.btn-remove{
+    color: rgb(255, 255, 255);
+    background: rgb(235, 39, 39);
+}
+.btn-edit{
+    color: #ffff;
+    background: blue;
+    display: block;
+}
+input{
+    border: 1px solid #000000;
+    margin: 8px 0;
+}
+.container-add{
+    display: flex;
+    justify-content: center;
+}
+.container-add form{
+    width: 50%;
+    
+}
+form table,form tr, form td{
+    border: 0;
+}
+

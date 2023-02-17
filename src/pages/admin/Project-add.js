@@ -14,17 +14,17 @@ const AdminAddProjectPage = () => {
     //
     const projectImage = document.getElementById("project-img");
 
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async(e)=> {
       e.preventDefault();
-      const urls = uploadFiles(projectImage.files)
-      console.log(urls)
+      const url = await uploadFiles(projectImage.files)
+      console.log(url)
       const newProjects = {
         title: title.value,
         description: description.value,
         createTime: createTime.value,
         skills: skills.value,
         link: link.value,
-        urls,
+        urlimgs : url,
       };
       // fetch("http://localhost:3000/projects", {
       //   method: "POST",
@@ -70,33 +70,37 @@ const AdminAddProjectPage = () => {
 return urls
   }
   return `
-    <div class="container"><form action="" id="form-add">
-    <div>
-      <label class="text-red-700">Title</label>
-      <input type="text" name="" id="project-title">
-    </div>
-    <div>
-      <label>Description</label>
-      <input type="text" name="" id="project-description">
-    </div>
-    <div>
-      <label>CreateTime</label>
-      <input type="text" name="" id="project-createtime">
-    </div>
-    <div>
-      <label>Skills</label>
-      <input type="text" name="" id="project-skills">
-    </div>
-    <div>
-      <label>Links</label>
-      <input type="text" name="" id="project-link">
-    </div>
-    <div>
-    <label>Project Images</label>
-    <input type="file" name="" id="project-img" multiple class = "form-control">
-  </div>
+    <div class="container-add"><form action="" id="form-add">
+    <table>
+        <tr>
+            <td><label class="text-red-700">Title</label></td>
+            <td><input type="text" name="" id="project-title"></td>
+        </tr>    
+        <tr>
+        <td><label>Description</label></td>
+        
+        <td><input type="text" name="" id="project-description"></td>
+    </tr>
+    <tr>
+        <td><label>CreateTime</label></td>
+        <td><input type="text" name="" id="project-createtime"></td>
+    </tr>
+    <tr>
+        <td><label>Skills</label></td>
+        <td><input type="text" name="" id="project-skills"></td>
+    </tr>
+    <tr>
+        <td><label>Links</label></td>
+        <td><input type="text" name="" id="project-link"></td>
+    </tr>
+    <tr>
+        <td><label>Project Images</label></td>
+        <td><input type="file" name="" id="project-img" multiple class="form-control"></td>
+    </tr>
+    </table>
+
     <div class=""><button class="btn btn-blue">Add project</button></div>
-  </form></div>`;
+</form></div>`;
 };
 
 export default AdminAddProjectPage;

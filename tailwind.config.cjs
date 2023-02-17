@@ -4,5 +4,10 @@ module.exports = {
   theme: {
     extend: {},
   },
+  // prefix: "tw-"
+  
   plugins: [],
+  // corePlugins: {
+  //   preflight: false,
+  // }
 }

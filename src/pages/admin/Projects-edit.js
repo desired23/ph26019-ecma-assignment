@@ -16,9 +16,13 @@ const [data, setData] = useState({})
         const createTime = document.getElementById("project-createtime");
         const skills = document.getElementById("project-skills");
         const link = document.getElementById("project-link");
+    const projectImage = document.getElementById("project-img");
+
     
-        form.addEventListener("submit", function (e) {
+        form.addEventListener("submit", async (e)=>{
           e.preventDefault();
+      const url = await uploadFiles(projectImage.files)
+
           const newProjects = {
             id,
             title: title.value,
@@ -26,6 +30,7 @@ const [data, setData] = useState({})
             createTime: createTime.value,
             skills: skills.value,
             link: link.value,
+            urlimgs : url,
           };
           // fetch(`http://localhost:3000/projects/${id}`, {
           //   method: "PUT",
@@ -44,28 +49,60 @@ const [data, setData] = useState({})
           })
         });
       });
+      const uploadFiles = async(files) => {
+    
+        const CLOUD_NAME = "dqzopvk2t";
+        const PRESET_NAME = "ph26019"
+        const urls = [];
+        const FOLDER_NAME = "ecma";
+        const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+        
+        const formData = new FormData(); //key:value
+        formData.append("upload_preset", PRESET_NAME);
+        formData.append("folder", FOLDER_NAME);
+    
+        for (const file of files){
+        formData.append("file", file);
+    
+        const response = await axios.post(api, formData,{
+          headers: {
+            "Content-Type": "multipart/form-data",
+          }
+        });
+        urls.push(response.data.secure_url)
+          
+        }
+        console.log(urls)
+    return urls
+      }
   return  `
   <div class="container"><form action="" id="form-add">
-  <div>
-    <label class="text-red-700">Title</label>
-    <input type="text" name="" id="project-title" value="${data.title ?? ""}">
-  </div>
-  <div>
-    <label>Description</label>
-    <input type="text" name="" id="project-description" value="${data.description ?? ""}">
-  </div>
-  <div>
-    <label>CreateTime</label>
-    <input type="text" name="" id="project-createtime" value="${data.createTime ?? ""}">
-  </div>
-  <div>
-    <label>Skills</label>
-    <input type="text" name="" id="project-skills" value="${data.skills ?? ""}">
-  </div>
-  <div>
-    <label>Links</label>
-    <input type="text" name="" id="project-link" value="${data.link ?? ""}">
-  </div>
+      <table>
+      <tr>
+      <td><label class="text-red-700">Title</label></td>
+      <td><input type="text" name="" id="project-title" value="${data.title ?? ""}"></td>
+    </tr>
+    <tr>
+      <td><label>Description</label></td>
+       <td><input type="text" name="" id="project-description" value="${data.description ?? ""}"></td>
+    </tr>
+    <tr>
+       <td><label>CreateTime</label></td>
+       <td><input type="text" name="" id="project-createtime" value="${data.createTime ?? ""}"></td>
+    </tr>
+    <tr>
+       <td><label>Skills</label></td>
+       <td><input type="text" name="" id="project-skills" value="${data.skills ?? ""}"></td>
+    </tr>
+    <tr>
+      <td><label>Links</label></td>
+      <td><input type="text" name="" id="project-link" value="${data.link ?? ""}"></td>
+    </tr>
+    <tr>
+    <td><label>Project Images</label></td>
+    <td><input type="file" name="" id="project-img" multiple class="form-control"></td>
+  </tr>
+      </table>
   <div class=""><button class="btn btn-blue">Save</button></div>
 </form></div>`;
 }
