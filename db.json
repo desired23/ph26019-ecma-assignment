@@ -13,48 +13,16 @@
       ]
     },
     {
-      "id": 2,
-      "title": "ecma2",
-      "description": "mo ta2",
-      "createTime": "date2",
-      "skills": [
-        "JS2",
-        "HTML5"
-      ],
-      "link": "https://thomashighbaugh.github.io/resume/"
-    },
-    {
       "id": 3,
       "title": "ecma3",
       "description": "mo ta3",
       "createTime": "date3",
       "skills": "JS3,HTML54dede",
-      "link": "https://thomashighbaugh.github.io/resume/"
-    },
-    {
-      "title": "ecma41",
-      "description": "mo ta41",
-      "createTime": "date41",
-      "skills": "JS4,HTML51",
-      "link": "https://thomashighbaugedh.github.io/resume/",
-      "id": 4
-    },
-    {
-      "title": "fdasffasdfaa",
-      "description": "sfasdfsa",
-      "createTime": "fasfasdf",
-      "skills": "fasdfsad",
-      "link": "ádfdasf",
-      "id": 5
-    },
-    {
-      "title": "dfsff",
-      "description": "sfsfd",
-      "createTime": "sdsf",
-      "skills": "fsdffg",
-      "link": "gsdfgsd",
-      "urls": {},
-      "id": 6
+      "link": "https://thomashighbaugh.github.io/resume/",
+      "urlimgs": [
+        "https://res.cloudinary.com/dqzopvk2t/image/upload/v1676660120/ecma/emhh9gkanqxma8q7xvff.png",
+        "https://res.cloudinary.com/dqzopvk2t/image/upload/v1676660126/ecma/nvqkrmdewgziqqkazaej.jpg"
+      ]
     },
     {
       "title": "đă",
